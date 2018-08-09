@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Vintasoft.Barcode.ReaderSettings readerSettings1 = new Vintasoft.Barcode.ReaderSettings();
-            Vintasoft.Barcode.ReaderSettings readerSettings2 = new Vintasoft.Barcode.ReaderSettings();
-            Vintasoft.Barcode.ReaderSettings readerSettings3 = new Vintasoft.Barcode.ReaderSettings();
-            Vintasoft.Barcode.ReaderSettings readerSettings4 = new Vintasoft.Barcode.ReaderSettings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.controlButtonsGroupBox1 = new System.Windows.Forms.GroupBox();
@@ -122,11 +118,6 @@
             // 
             // barcodeTypesEditor
             // 
-            readerSettings1.MaximalThreadsCount = 4;
-            readerSettings1.MinConfidence = 95;
-            readerSettings1.ScanRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
-            readerSettings1.VerifyBarcodeMethod = null;
-            this.barcodeTypesEditor.BarcodeReaderSettings = readerSettings1;
             this.barcodeTypesEditor.Location = new System.Drawing.Point(273, 1);
             this.barcodeTypesEditor.Name = "barcodeTypesEditor";
             this.barcodeTypesEditor.ShowUnknownLinearSettings = false;
@@ -135,11 +126,6 @@
             // 
             // scanDirectionEditor
             // 
-            readerSettings2.MaximalThreadsCount = 4;
-            readerSettings2.MinConfidence = 95;
-            readerSettings2.ScanRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
-            readerSettings2.VerifyBarcodeMethod = null;
-            this.scanDirectionEditor.BarcodeReaderSettings = readerSettings2;
             this.scanDirectionEditor.Location = new System.Drawing.Point(8, 147);
             this.scanDirectionEditor.Name = "scanDirectionEditor";
             this.scanDirectionEditor.Size = new System.Drawing.Size(258, 99);
@@ -147,11 +133,6 @@
             // 
             // scanIntervalEditor
             // 
-            readerSettings3.MaximalThreadsCount = 4;
-            readerSettings3.MinConfidence = 95;
-            readerSettings3.ScanRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
-            readerSettings3.VerifyBarcodeMethod = null;
-            this.scanIntervalEditor.BarcodeReaderSettings = readerSettings3;
             this.scanIntervalEditor.Location = new System.Drawing.Point(8, 73);
             this.scanIntervalEditor.Maximum = 25;
             this.scanIntervalEditor.Minimum = 1;
@@ -164,11 +145,6 @@
             // 
             // expectedBarcodesEditor
             // 
-            readerSettings4.MaximalThreadsCount = 4;
-            readerSettings4.MinConfidence = 95;
-            readerSettings4.ScanRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
-            readerSettings4.VerifyBarcodeMethod = null;
-            this.expectedBarcodesEditor.BarcodeReaderSettings = readerSettings4;
             this.expectedBarcodesEditor.Location = new System.Drawing.Point(139, 73);
             this.expectedBarcodesEditor.Maximum = 50;
             this.expectedBarcodesEditor.Minimum = 1;

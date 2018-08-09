@@ -13,13 +13,16 @@ using Vintasoft.Barcode.SymbologySubsets.XFACompressed;
 namespace BarcodeDemo
 {
     /// <summary>
-    /// Editor control of ReaderSettings.ScanBarcodeTypes property.
+    /// A control that allows to select the barcode types for barcode reader.
     /// </summary>
     public partial class BarcodeTypesReaderSettingsControl : ReaderSettingsEditorControl
     {
 
         #region Fields
 
+        /// <summary>
+        /// Indicates that the barcode reader settings can be changed.
+        /// </summary>
         bool _enableSetSettings = true;
 
         #endregion
@@ -28,6 +31,9 @@ namespace BarcodeDemo
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodeTypesReaderSettingsControl"/> class.
+        /// </summary>
         public BarcodeTypesReaderSettingsControl()
         {
             InitializeComponent();
@@ -40,6 +46,14 @@ namespace BarcodeDemo
         #region Properties
 
         bool _showUnknownLinearSettings = true;
+        /// <summary>
+        /// Gets or sets a value indicating whether control must show settings
+        /// for recognition of unknown linear barcodes.
+        /// </summary>
+        /// <value>
+        /// <b>True</b> if control must show settings for recognition of unknown linear barcodes;
+        /// otherwise, <b>false</b>.
+        /// </value>
         [DefaultValue(true)]
         public bool ShowUnknownLinearSettings
         {
@@ -56,8 +70,16 @@ namespace BarcodeDemo
                     linearTabControl.TabPages.Remove(unknownLinearTabPage);
             }
         }
-      
+
         bool _highlightOptionalChecksumBarcodes = false;
+        /// <summary>
+        /// Gets or sets a value indicating whether control must highlight barcodes
+        /// with optional checksum.
+        /// </summary>
+        /// <value>
+        /// <b>True</b> if control must highlight barcodes with optional checksum;
+        /// otherwise, <b>false</b>.
+        /// </value>
         [DefaultValue(false)]
         public bool HighlightOptionalChecksumBarcodes
         {
@@ -86,6 +108,9 @@ namespace BarcodeDemo
 
         #region Methods
 
+        /// <summary>
+        /// Handles the Click event of the "All/Clear" button.
+        /// </summary>
         private void barcodeTypesAllOrClear_Click(object sender, EventArgs e)
         {
             _enableSetSettings = false;
@@ -104,11 +129,17 @@ namespace BarcodeDemo
             SetSettings();
         }
 
+        /// <summary>
+        /// Sets the barcode reader settings.
+        /// </summary>
         private void barcodeTypeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             SetSettings();
         }
 
+        /// <summary>
+        /// Sets the barcode reader settings.
+        /// </summary>
         private void unknownLinearNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             SetSettings();
@@ -180,6 +211,54 @@ namespace BarcodeDemo
             barcodeMailmarkCmdmType7CheckBox.Checked = false;
             barcodeMailmarkCmdmType9CheckBox.Checked = false;
             barcodeMailmarkCmdmType29CheckBox.Checked = false;
+            barcodeCode32CheckBox.Checked = false;
+            barcodeVinCheckBox.Checked = false;
+            barcodePznCheckBox.Checked = false;
+            barcodeCode39ExtendedCheckBox.Checked = false;
+            barcodeOpcCheckBox.Checked = false;
+            barcodeItf14CheckBox.Checked = false;
+            barcodeDeutschePostIdentcodeCheckBox.Checked = false;
+            barcodeDeutschePostLeitcodeCheckBox.Checked = false;
+            barcodeSscc18CheckBox.Checked = false;
+            barcodeJan13CheckBox.Checked = false;
+            barcodeJan8CheckBox.Checked = false;
+            barcodeJan13CheckBox.Checked = false;
+            barcodePlus5CheckBox.Checked = false;
+            barcodeJan13CheckBox.Checked = false;
+            barcodePlus2CheckBox.Checked = false;
+            barcodeJan8CheckBox.Checked = false;
+            barcodeJan8CheckBox.Checked = false;
+            barcodePlus5CheckBox.Checked = false;
+            barcodeJan8CheckBox.Checked = false;
+            barcodePlus2CheckBox.Checked = false;
+            barcodeIsbnCheckBox.Checked = false;
+            barcodeIsbnCheckBox.Checked = false;
+            barcodePlus2CheckBox.Checked = false;
+            barcodeIsbnCheckBox.Checked = false;
+            barcodePlus5CheckBox.Checked = false;
+            barcodeIsmnCheckBox.Checked = false;
+            barcodeIsmnCheckBox.Checked = false;
+            barcodePlus2CheckBox.Checked = false;
+            barcodeIsmnCheckBox.Checked = false;
+            barcodePlus5CheckBox.Checked = false;
+            barcodeIssnCheckBox.Checked = false;
+            barcodeIssnCheckBox.Checked = false;
+            barcodePlus2CheckBox.Checked = false;
+            barcodeIssnCheckBox.Checked = false;
+            barcodePlus5CheckBox.Checked = false;
+            barcodeSwissPostParcelCheckBox.Checked = false;
+            barcodePpnCheckBox.Checked = false;
+            barcodeEanVelocityCheckBox.Checked = false;
+            barcodeNumlyNumberCheckBox.Checked = false;
+            barcodeFedExGround96CheckBox.Checked = false;
+            barcodeVicsBolCheckBox.Checked = false;
+            barcodeVicsScacProCheckBox.Checked = false;
+            barcodeDhlAwbCheckBox.Checked = false;
+            barcodeXFACompressedAztecCheckBox.Checked = false;
+            barcodeXFACompressedDataMatrixCheckBox.Checked = false;
+            barcodeXFACompressedPDF417CheckBox.Checked = false;
+            barcodeXFACompressedQRCheckBox.Checked = false;
+            barcodeI25ChecksumIso16390.Checked = false;
             foreach (BarcodeSymbologySubset subset in BarcodeReaderSettings.ScanBarcodeSubsets)
             {
                 if (subset is GS1_128BarcodeSymbology)
@@ -310,6 +389,9 @@ namespace BarcodeDemo
                     barcodeXFACompressedPDF417CheckBox.Checked = true;
                 if (subset is XFACompressedQRCodeBarcodeSymbology)
                     barcodeXFACompressedQRCheckBox.Checked = true;
+
+                if (subset is Interleaved2of5ChecksumISO16390)
+                    barcodeI25ChecksumIso16390.Checked = true;
             }
 
             unknownLinearMaxBarsNumericUpDown.Value = BarcodeReaderSettings.UnknownLinearMaxBars;
@@ -523,19 +605,25 @@ namespace BarcodeDemo
             if (barcodeXFACompressedQRCheckBox.Checked)
                 BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.XFACompressedQRCode);
 
+            if (barcodeI25ChecksumIso16390.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.Interleaved2of5ChecksumISO16390);
+
             BarcodeReaderSettings.UnknownLinearMaxBars = (int)unknownLinearMaxBarsNumericUpDown.Value;
             BarcodeReaderSettings.UnknownLinearMinBars = (int)unknownLinearMinBarsNumericUpDown.Value;
             BarcodeReaderSettings.UnknownLinearMaxBarWide = (int)unknownLinearMaxBarWideNumericUpDown.Value;
             BarcodeReaderSettings.UnknownLinearMinScanlines = (int)unknownLinearMinScanlinesNumericUpDown.Value;
 
 
-            OnSettingsChanged();
+            OnSettingsChanged(EventArgs.Empty);
         }
 
-        private void OnSettingsChanged()
+        /// <summary>
+        /// Raises the <see cref="E:SettingsChanged" /> event.
+        /// </summary>
+        private void OnSettingsChanged(EventArgs e)
         {
             if (SettingsChanged != null)
-                SettingsChanged(this, EventArgs.Empty);
+                SettingsChanged(this, e);
         }
 
         #endregion
@@ -544,10 +632,12 @@ namespace BarcodeDemo
 
         #region Events
 
+        /// <summary>
+        /// Occurs when reader settings is changed.
+        /// </summary>
         public event EventHandler SettingsChanged;
 
         #endregion
 
-      
     }
 }

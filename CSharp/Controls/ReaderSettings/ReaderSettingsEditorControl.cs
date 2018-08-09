@@ -7,9 +7,9 @@ using Vintasoft.Barcode;
 namespace BarcodeDemo
 {
     /// <summary>
-    /// Represents a base class of barcode reader settings editor.
+    /// A base class for controls that allow to change the barcode reader settings.
     /// </summary>
-    public class ReaderSettingsEditorControl: UserControl
+    public class ReaderSettingsEditorControl : UserControl
     {
 
         #region Properties
@@ -19,17 +19,12 @@ namespace BarcodeDemo
         /// Gets or sets a barcode reader settings.
         /// </summary>
         [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]       
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ReaderSettings BarcodeReaderSettings
         {
             get
             {
                 return _barcodeReaderSettings;
-            }
-            set
-            {
-                _barcodeReaderSettings = value;
-                UpdateUI();
             }
         }
 
@@ -39,16 +34,26 @@ namespace BarcodeDemo
 
         #region Methods
 
+        /// <summary>
+        /// Sets the barcode reader settings.
+        /// </summary>
+        /// <param name="settings">The reader settings.</param>
         public void SetBarcodeReaderSettings(ReaderSettings settings)
         {
             _barcodeReaderSettings = settings;
             OnBarcodeReaderSettingsChanged(EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Updates the UI.
+        /// </summary>
         public virtual void UpdateUI()
         {
         }
 
+        /// <summary>
+        /// Called when barcode reader settings changed.
+        /// </summary>
         protected virtual void OnBarcodeReaderSettingsChanged(EventArgs e)
         {
             UpdateUI();

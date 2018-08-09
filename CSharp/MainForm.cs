@@ -31,6 +31,9 @@ namespace SimpleBarcodeReaderDemo
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainForm"/> class.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -62,14 +65,15 @@ namespace SimpleBarcodeReaderDemo
             {
             }
 
+            _reader.Settings.SearchQRModel1Barcodes = true;
             _reader.Settings.ScanDirection = ScanDirection.Horizontal | ScanDirection.Vertical;
             _reader.Settings.ScanBarcodeTypes = BarcodeType.Code39 | BarcodeType.Code128;
             _reader.Progress += new EventHandler<BarcodeReaderProgressEventArgs>(reader_Progress);
 
-            expectedBarcodesEditor.BarcodeReaderSettings = _reader.Settings;
-            scanIntervalEditor.BarcodeReaderSettings = _reader.Settings;
-            scanDirectionEditor.BarcodeReaderSettings = _reader.Settings;
-            barcodeTypesEditor.BarcodeReaderSettings = _reader.Settings;
+            expectedBarcodesEditor.SetBarcodeReaderSettings(_reader.Settings);
+            scanIntervalEditor.SetBarcodeReaderSettings(_reader.Settings);
+            scanDirectionEditor.SetBarcodeReaderSettings(_reader.Settings);
+            barcodeTypesEditor.SetBarcodeReaderSettings(_reader.Settings);
         }
 
         #endregion

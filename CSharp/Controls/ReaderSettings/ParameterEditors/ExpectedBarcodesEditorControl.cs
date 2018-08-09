@@ -1,13 +1,16 @@
 ﻿namespace BarcodeDemo
 {
     /// <summary>
-    /// Represents an editor control of ReaderSettings.ExpectedBarcodes parameter.
+    /// A control that allows to change the ReaderSettings.ExpectedBarcodes parameter.
     /// </summary>
     public class ExpectedBarcodesEditorControl : ParameterEditorControl
     {
         
         #region Constructors
-
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpectedBarcodesEditorControl"/> class.
+        /// </summary>
         public ExpectedBarcodesEditorControl()
         {
             Minimum = 1;

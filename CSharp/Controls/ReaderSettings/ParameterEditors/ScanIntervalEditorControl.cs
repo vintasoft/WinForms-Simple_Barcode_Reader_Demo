@@ -1,13 +1,16 @@
 ﻿namespace BarcodeDemo
 {
     /// <summary>
-    /// Represents an editor control of ReaderSettings.ScanInterval parameter.
+    /// A control that allows to change the ReaderSettings.ScanInterval parameter.
     /// </summary>
     public class ScanIntervalEditorControl : ParameterEditorControl
     {
-        
+
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScanIntervalEditorControl"/> class.
+        /// </summary>
         public ScanIntervalEditorControl()
         {
             Minimum = 1;

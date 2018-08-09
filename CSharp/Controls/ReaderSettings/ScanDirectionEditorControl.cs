@@ -7,13 +7,16 @@ using Vintasoft.Barcode;
 namespace BarcodeDemo
 {
     /// <summary>
-    /// Represents an editor of ReaderSettings.ScanDirection property.
+    /// A control that allows to chnage the barcode scan direction for barcode reader.
     /// </summary>
     public partial class ScanDirectionEditorControl : ReaderSettingsEditorControl
     {
 
         #region Fields
 
+        /// <summary>
+        /// Indicates that the barcode reader settings can be changed.
+        /// </summary>
         bool _enableSetSettings = true;
 
         #endregion
@@ -22,6 +25,9 @@ namespace BarcodeDemo
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScanDirectionEditorControl"/> class.
+        /// </summary>
         public ScanDirectionEditorControl()
         {
             InitializeComponent();
@@ -33,6 +39,9 @@ namespace BarcodeDemo
 
         #region Methods
 
+        /// <summary>
+        /// Updates the "Direction 45/135" controls.
+        /// </summary>
         private void UpdateDirection45()
         {
             bool direction45 = directionAngle45CheckBox.Checked;
@@ -49,6 +58,9 @@ namespace BarcodeDemo
             }
         }
 
+        /// <summary>
+        /// Updates the User Interface.
+        /// </summary>
         public override void UpdateUI()
         {
             _enableSetSettings = false;
@@ -58,18 +70,24 @@ namespace BarcodeDemo
             directionRLCheckBox.Checked = (scanDirection & ScanDirection.RightToLeft) != 0;
             directionTBCheckBox.Checked = (scanDirection & ScanDirection.TopToBottom) != 0;
             directionBTCheckBox.Checked = (scanDirection & ScanDirection.BottomToTop) != 0;
-            
+
             directionAngle45CheckBox.Checked = (scanDirection & ScanDirection.Angle45and135) != 0;
             UpdateDirection45();
 
             _enableSetSettings = true;
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the Direction control.
+        /// </summary>
         private void direction_CheckedChanged(object sender, EventArgs e)
         {
             SetDirection();
         }
 
+        /// <summary>
+        /// Sets the scan direction of reader settings.
+        /// </summary>
         private void SetDirection()
         {
             if (!_enableSetSettings)
@@ -90,9 +108,9 @@ namespace BarcodeDemo
                 scanDirection |= ScanDirection.BottomToTop;
             if (directionAngle45CheckBox.Checked)
                 scanDirection |= ScanDirection.Angle45and135;
-            
+
             BarcodeReaderSettings.ScanDirection = scanDirection;
-            
+
             _enableSetSettings = true;
         }
 
