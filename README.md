@@ -1,4 +1,4 @@
-<h1>VintaSoft Simple Barcode Reader Demo</h1>
+<h1>VintaSoft WinForms Simple Barcode Reader Demo</h1>
 
 Demo application shows how to read barcodes from images. "Automatic recognition" mode is used by default. Demo uses functionality of <a href="https://www.vintasoft.com/vsbarcode-dotnet-index.html">VintaSoft Barcode .NET SDK</a>. Source codes for C# and VB.NET are available.
 
@@ -11,7 +11,7 @@ VintaSoft Barcode .NET SDK distributive package can be downloaded here: https://
 
 
 <h2>Documentation</h2>
-VintaSoft Barcode .NET SDK on-line User Guide and API Reference is available here: https://www.vintasoft.com/docs/vsbarcode-dotnet/
+VintaSoft Barcode .NET SDK on-line User Guide and API Reference for .NET development is available here: https://www.vintasoft.com/docs/vsbarcode-dotnet/
 
 
 <h2>Support</h2>
