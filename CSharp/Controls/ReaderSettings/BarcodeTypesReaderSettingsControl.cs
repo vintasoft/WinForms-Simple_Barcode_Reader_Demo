@@ -2,13 +2,15 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
 using Vintasoft.Barcode;
 using Vintasoft.Barcode.SymbologySubsets.RoyalMailMailmark;
 using Vintasoft.Barcode.SymbologySubsets;
 using Vintasoft.Barcode.SymbologySubsets.GS1;
 using Vintasoft.Barcode.SymbologySubsets.XFACompressed;
+using Vintasoft.Barcode.SymbologySubsets.AAMVA;
+using Vintasoft.Barcode.SymbologySubsets.Hibc;
+using Vintasoft.Barcode.SymbologySubsets.Isbt128;
 
 namespace BarcodeDemo
 {
@@ -259,6 +261,9 @@ namespace BarcodeDemo
             barcodeXFACompressedPDF417CheckBox.Checked = false;
             barcodeXFACompressedQRCheckBox.Checked = false;
             barcodeI25ChecksumIso16390.Checked = false;
+            barcodeAAMVACheckBox.Checked = false;
+            barcodeIsbt128CheckBox.Checked = false;
+            barcodeIsbt128DataMatrixCheckBox.Checked = false;
             foreach (BarcodeSymbologySubset subset in BarcodeReaderSettings.ScanBarcodeSubsets)
             {
                 if (subset is GS1_128BarcodeSymbology)
@@ -390,8 +395,27 @@ namespace BarcodeDemo
                 if (subset is XFACompressedQRCodeBarcodeSymbology)
                     barcodeXFACompressedQRCheckBox.Checked = true;
 
+                if (subset is AamvaBarcodeSymbology)
+                    barcodeAAMVACheckBox.Checked = true;
+
                 if (subset is Interleaved2of5ChecksumISO16390)
                     barcodeI25ChecksumIso16390.Checked = true;
+
+                if (subset is Isbt128BarcodeSymbology)
+                    barcodeIsbt128CheckBox.Checked = true;
+                if (subset is Isbt128DataMatrixBarcodeSymbology)
+                    barcodeIsbt128DataMatrixCheckBox.Checked = true;
+
+                if (subset is HibcLic128BarcodeSymbology)
+                    barcodeHibcLic128CheckBox.Checked = true;
+                if (subset is HibcLic39BarcodeSymbology)
+                    barcodeHibcLic39CheckBox.Checked = true;
+                if (subset is HibcLicAztecBarcodeSymbology)
+                    barcodeHibcLicAztecCheckBox.Checked = true;
+                if (subset is HibcLicDataMatrixBarcodeSymbology)
+                    barcodeHibcLicDataMatrixCheckBox.Checked = true;
+                if (subset is HibcLicQRBarcodeSymbology)
+                    barcodeHibcLicQrCheckBox.Checked = true;
             }
 
             unknownLinearMaxBarsNumericUpDown.Value = BarcodeReaderSettings.UnknownLinearMaxBars;
@@ -516,6 +540,18 @@ namespace BarcodeDemo
                 BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.GS1DataMatrix);
             if (barcodeGs1AztecCheckBox.Checked)
                 BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.GS1Aztec);
+
+            if (barcodeHibcLic128CheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.HIBCLIC128);
+            if (barcodeHibcLic39CheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.HIBCLIC39);
+            if (barcodeHibcLicAztecCheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.HIBCLICAztecCode);
+            if (barcodeHibcLicDataMatrixCheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.HIBCLICDataMatrix);
+            if (barcodeHibcLicQrCheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.HIBCLICQRCode);
+
             if (barcodeMailmarkCmdmType7CheckBox.Checked)
                 BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.MailmarkCmdmType7);
             if (barcodeMailmarkCmdmType9CheckBox.Checked)
@@ -604,6 +640,14 @@ namespace BarcodeDemo
                 BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.XFACompressedPDF417);
             if (barcodeXFACompressedQRCheckBox.Checked)
                 BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.XFACompressedQRCode);
+            if (barcodeAAMVACheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.AAMVA);
+
+            if (barcodeIsbt128CheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.ISBT128);
+            if (barcodeIsbt128DataMatrixCheckBox.Checked)
+                BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.ISBT128DataMatrix);
+
 
             if (barcodeI25ChecksumIso16390.Checked)
                 BarcodeReaderSettings.ScanBarcodeSubsets.Add(BarcodeSymbologySubsets.Interleaved2of5ChecksumISO16390);

@@ -61,9 +61,9 @@
             this.panel1.Controls.Add(this.scanIntervalEditor);
             this.panel1.Controls.Add(this.expectedBarcodesEditor);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 410);
+            this.panel1.Location = new System.Drawing.Point(0, 395);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(775, 252);
+            this.panel1.Size = new System.Drawing.Size(775, 267);
             this.panel1.TabIndex = 0;
             // 
             // controlButtonsGroupBox1
@@ -121,19 +121,19 @@
             this.barcodeTypesEditor.Location = new System.Drawing.Point(273, 1);
             this.barcodeTypesEditor.Name = "barcodeTypesEditor";
             this.barcodeTypesEditor.ShowUnknownLinearSettings = false;
-            this.barcodeTypesEditor.Size = new System.Drawing.Size(495, 245);
+            this.barcodeTypesEditor.Size = new System.Drawing.Size(495, 263);
             this.barcodeTypesEditor.TabIndex = 35;
             // 
             // scanDirectionEditor
             // 
-            this.scanDirectionEditor.Location = new System.Drawing.Point(8, 147);
+            this.scanDirectionEditor.Location = new System.Drawing.Point(8, 161);
             this.scanDirectionEditor.Name = "scanDirectionEditor";
             this.scanDirectionEditor.Size = new System.Drawing.Size(258, 99);
             this.scanDirectionEditor.TabIndex = 34;
             // 
             // scanIntervalEditor
             // 
-            this.scanIntervalEditor.Location = new System.Drawing.Point(8, 73);
+            this.scanIntervalEditor.Location = new System.Drawing.Point(8, 87);
             this.scanIntervalEditor.Maximum = 25;
             this.scanIntervalEditor.Minimum = 1;
             this.scanIntervalEditor.Name = "scanIntervalEditor";
@@ -145,7 +145,7 @@
             // 
             // expectedBarcodesEditor
             // 
-            this.expectedBarcodesEditor.Location = new System.Drawing.Point(139, 73);
+            this.expectedBarcodesEditor.Location = new System.Drawing.Point(139, 87);
             this.expectedBarcodesEditor.Maximum = 50;
             this.expectedBarcodesEditor.Minimum = 1;
             this.expectedBarcodesEditor.Name = "expectedBarcodesEditor";
@@ -163,7 +163,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.panel2.Size = new System.Drawing.Size(775, 410);
+            this.panel2.Size = new System.Drawing.Size(775, 395);
             this.panel2.TabIndex = 1;
             // 
             // panel4
@@ -174,7 +174,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(2, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(531, 406);
+            this.panel4.Size = new System.Drawing.Size(531, 391);
             this.panel4.TabIndex = 1;
             // 
             // readerPictureBox
@@ -193,7 +193,7 @@
             this.panel3.Location = new System.Drawing.Point(533, 2);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.panel3.Size = new System.Drawing.Size(240, 406);
+            this.panel3.Size = new System.Drawing.Size(240, 391);
             this.panel3.TabIndex = 0;
             // 
             // readerResults
@@ -203,15 +203,15 @@
             this.readerResults.Name = "readerResults";
             this.readerResults.ReadOnly = true;
             this.readerResults.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.readerResults.Size = new System.Drawing.Size(238, 406);
+            this.readerResults.Size = new System.Drawing.Size(238, 391);
             this.readerResults.TabIndex = 1;
             this.readerResults.Text = "";
             // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "All supported (*.pdf;*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.tif;*.tiff;*.png;*.gif;*.t" +
-                "ga;*.wmf;*.emf)|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.tif;*.tiff;*.png;*.gif;*.tga;*" +
-                ".wmf;*.emf;*.pdf";
+    "ga;*.wmf;*.emf)|*.bmp;*.jpg;*.jpeg;*.jpe;*.jfif;*.tif;*.tiff;*.png;*.gif;*.tga;*" +
+    ".wmf;*.emf;*.pdf";
             // 
             // MainForm
             // 

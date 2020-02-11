@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Vintasoft.Barcode;
 using Vintasoft.Barcode.BarcodeInfo;
 using Vintasoft.Barcode.GS1;
+using Vintasoft.Barcode.SymbologySubsets.AAMVA;
 
 namespace SimpleBarcodeReaderDemo
 {
@@ -22,7 +23,9 @@ namespace SimpleBarcodeReaderDemo
         SelectImageFrameForm _selectImageFrameForm = new SelectImageFrameForm();
         
         SelectPdfPageForm _selectPdfPageForm = new SelectPdfPageForm();
-                
+
+        Stream _imageStream;
+
         Image _image;
 
         #endregion
@@ -187,15 +190,27 @@ namespace SimpleBarcodeReaderDemo
             }
 
             return sb.ToString();
-        }       
+        }
 
+        /// <summary>
+        /// Returns the barcode value as a string.
+        /// </summary>
         private string GetBarcodeInfo(int index, IBarcodeInfo info)
         {
             info.ShowNonDataFlagsInValue = true;
 
-            string value = info.Value;
-            if (info.BarcodeType == BarcodeType.UPCE)
-                value += string.Format(" ({0})", (info as UPCEANInfo).UPCEValue);
+            string value;
+            if (info.BarcodeInfoClass == BarcodeInfoClass.Barcode2D)
+                value = EciCharacterDecoder.Decode(info.ValueItems);
+            else
+                value = info.Value;
+
+            if ((info.BarcodeType & BarcodeType.UPCE) != 0)
+                value += string.Format(" (UPC-E: {0})", (info as UPCEANInfo).UPCEValue);
+
+            if ((info.BarcodeType & BarcodeType.UPCA) != 0)
+                value += string.Format(" (UPC-A: {0})", (info as UPCEANInfo).UPCAValue);
+
 
             string confidence;
             if (info.Confidence == ReaderSettings.ConfidenceNotAvailable)
@@ -205,9 +220,36 @@ namespace SimpleBarcodeReaderDemo
 
             if (info is BarcodeSubsetInfo)
             {
-                value = string.Format("{0}{1}Base value: {2}",
-                    RemoveSpecialCharacters(value), Environment.NewLine,
-                    RemoveSpecialCharacters(((BarcodeSubsetInfo)info).BaseBarcodeInfo.Value));
+                if (info is AamvaBarcodeInfo)
+                {
+                    AamvaBarcodeValue aamvaValue = ((AamvaBarcodeInfo)info).AamvaValue;
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine();
+                    sb.AppendLine(string.Format("Issuer identification number: {0}", aamvaValue.Header.IssuerIdentificationNumber));
+                    sb.AppendLine(string.Format("File type: {0}", aamvaValue.Header.FileType));
+                    sb.AppendLine(string.Format("AAMVA Version number: {0} ({1})", aamvaValue.Header.VersionLevel, (int)aamvaValue.Header.VersionLevel));
+                    sb.AppendLine(string.Format("Jurisdiction Version number: {0}", aamvaValue.Header.JurisdictionVersionNumber));
+                    sb.AppendLine();
+                    foreach (AamvaSubfile subfile in aamvaValue.Subfiles)
+                    {
+                        sb.AppendLine(string.Format("[{0}] subfile:", subfile.SubfileType));
+                        foreach (AamvaDataElement dataElement in subfile.DataElements)
+                        {
+                            if (dataElement.Identifier.VersionLevel != AamvaVersionLevel.Undefined)
+                                sb.Append(string.Format("  [{0}] {1}:", dataElement.Identifier.ID, dataElement.Identifier.Description));
+                            else
+                                sb.Append(string.Format("  [{0}]:", dataElement.Identifier.ID));
+                            sb.AppendLine(string.Format(" {0}", dataElement.Value));
+                        }
+                    }
+                    value = sb.ToString();
+                }
+                else
+                {
+                    value = string.Format("{0}{1}Base value: {2}",
+                        RemoveSpecialCharacters(value), Environment.NewLine,
+                        RemoveSpecialCharacters(((BarcodeSubsetInfo)info).BaseBarcodeInfo.Value));
+                }
             }
             else
             {
@@ -215,11 +257,12 @@ namespace SimpleBarcodeReaderDemo
             }
 
             string barcodeTypeValue;
-            if (info is BarcodeSubsetInfo)
+            if (info is StructuredAppendBarcodeInfo)
+                barcodeTypeValue = string.Format("{0} (Reconstructed)", info.BarcodeType);
+            else if (info is BarcodeSubsetInfo)
                 barcodeTypeValue = ((BarcodeSubsetInfo)info).BarcodeSubset.ToString();
             else
                 barcodeTypeValue = info.BarcodeType.ToString();
-
 
             StringBuilder result = new StringBuilder();
             result.AppendLine(string.Format("[{0}:{1}]", index + 1, barcodeTypeValue));
@@ -254,8 +297,9 @@ namespace SimpleBarcodeReaderDemo
             try
             {
                 // check file to use in another process
-                Stream tempStream = File.Open(fileName, FileMode.Open);
-                tempStream.Dispose();
+                using (Stream tempStream = File.OpenRead(fileName))
+                {
+                }
 
                 if (Path.GetExtension(fileName).ToLower() == ".pdf")
                 {
@@ -264,7 +308,10 @@ namespace SimpleBarcodeReaderDemo
                     _image = _selectPdfPageForm.SelectImage(fileName);
                 }
                 else
-                    _image = Image.FromFile(fileName);
+                {
+                    _imageStream = File.OpenRead(fileName);
+                    _image = Image.FromStream(_imageStream);
+                }
                 if (_image == null)
                     return;
                 Text = _formText + " - " + Path.GetFileName(fileName);
@@ -296,6 +343,11 @@ namespace SimpleBarcodeReaderDemo
             {
                 _image.Dispose();
                 _image = null;
+            }
+            if (_imageStream != null)
+            {
+                _imageStream.Dispose();
+                _imageStream = null;
             }
             readerResults.Text = "";
             Text = _formText;
