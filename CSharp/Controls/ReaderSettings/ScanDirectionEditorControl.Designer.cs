@@ -1,4 +1,4 @@
-namespace BarcodeDemo
+ï»¿namespace BarcodeDemo
 {
     partial class ScanDirectionEditorControl
     {
@@ -108,7 +108,7 @@ namespace BarcodeDemo
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 16);
             this.label1.TabIndex = 10;
-            this.label1.Text = "45°/135°";
+            this.label1.Text = "45Â°/135Â°";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // directionAngle45CheckBox
@@ -197,7 +197,6 @@ namespace BarcodeDemo
             // 
             // ScanDirectionEditorControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.GroupBox2);
             this.Name = "ScanDirectionEditorControl";

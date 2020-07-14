@@ -115,6 +115,7 @@ namespace BarcodeDemo
             this.unknownLinearMinScanlinesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.unknownLinearMaxBarWideNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.twoDimensionalBarcodesTabPage = new System.Windows.Forms.TabPage();
+            this.barcodeDotCodeCheckBox = new System.Windows.Forms.CheckBox();
             this.barcodeHibcLicAztecCheckBox = new System.Windows.Forms.CheckBox();
             this.barcodeHibcLicDataMatrixCheckBox = new System.Windows.Forms.CheckBox();
             this.barcodeHibcLicQrCheckBox = new System.Windows.Forms.CheckBox();
@@ -140,6 +141,7 @@ namespace BarcodeDemo
             this.barcodeAztecCheckBox = new System.Windows.Forms.CheckBox();
             this.barcodeDataMatrixCheckBox = new System.Windows.Forms.CheckBox();
             this.barcodePDF417CheckBox = new System.Windows.Forms.CheckBox();
+            this.barcodeGs1DotCodeCheckBox = new System.Windows.Forms.CheckBox();
             this.barcodeTypesGroupBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.linearBarcodesTabPage.SuspendLayout();
@@ -1090,6 +1092,8 @@ namespace BarcodeDemo
             // 
             // twoDimensionalBarcodesTabPage
             // 
+            this.twoDimensionalBarcodesTabPage.Controls.Add(this.barcodeGs1DotCodeCheckBox);
+            this.twoDimensionalBarcodesTabPage.Controls.Add(this.barcodeDotCodeCheckBox);
             this.twoDimensionalBarcodesTabPage.Controls.Add(this.barcodeHibcLicAztecCheckBox);
             this.twoDimensionalBarcodesTabPage.Controls.Add(this.barcodeHibcLicDataMatrixCheckBox);
             this.twoDimensionalBarcodesTabPage.Controls.Add(this.barcodeHibcLicQrCheckBox);
@@ -1122,6 +1126,15 @@ namespace BarcodeDemo
             this.twoDimensionalBarcodesTabPage.TabIndex = 1;
             this.twoDimensionalBarcodesTabPage.Text = "2D";
             this.twoDimensionalBarcodesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // barcodeDotCodeCheckBox
+            // 
+            this.barcodeDotCodeCheckBox.Location = new System.Drawing.Point(362, 94);
+            this.barcodeDotCodeCheckBox.Name = "barcodeDotCodeCheckBox";
+            this.barcodeDotCodeCheckBox.Size = new System.Drawing.Size(99, 22);
+            this.barcodeDotCodeCheckBox.TabIndex = 72;
+            this.barcodeDotCodeCheckBox.Text = "DotCode";
+            this.barcodeDotCodeCheckBox.CheckedChanged += new System.EventHandler(this.barcodeTypeCheckBox_CheckedChanged);
             // 
             // barcodeHibcLicAztecCheckBox
             // 
@@ -1350,9 +1363,17 @@ namespace BarcodeDemo
             this.barcodePDF417CheckBox.Text = "PDF417, PDF417 Compact";
             this.barcodePDF417CheckBox.CheckedChanged += new System.EventHandler(this.barcodeTypeCheckBox_CheckedChanged);
             // 
+            // barcodeGs1DotCodeCheckBox
+            // 
+            this.barcodeGs1DotCodeCheckBox.Location = new System.Drawing.Point(373, 118);
+            this.barcodeGs1DotCodeCheckBox.Name = "barcodeGs1DotCodeCheckBox";
+            this.barcodeGs1DotCodeCheckBox.Size = new System.Drawing.Size(99, 22);
+            this.barcodeGs1DotCodeCheckBox.TabIndex = 73;
+            this.barcodeGs1DotCodeCheckBox.Text = "GS1 DotCode";
+            this.barcodeGs1DotCodeCheckBox.CheckedChanged += new System.EventHandler(this.barcodeTypeCheckBox_CheckedChanged);
+            // 
             // BarcodeTypesReaderSettingsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.barcodeTypesGroupBox);
             this.Name = "BarcodeTypesReaderSettingsControl";
@@ -1490,5 +1511,7 @@ namespace BarcodeDemo
         private System.Windows.Forms.CheckBox barcodeHibcLicAztecCheckBox;
         private System.Windows.Forms.CheckBox barcodeHibcLicDataMatrixCheckBox;
         private System.Windows.Forms.CheckBox barcodeHibcLicQrCheckBox;
+        private System.Windows.Forms.CheckBox barcodeDotCodeCheckBox;
+        private System.Windows.Forms.CheckBox barcodeGs1DotCodeCheckBox;
     }
 }
