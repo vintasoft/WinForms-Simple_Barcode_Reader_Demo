@@ -18,7 +18,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>    
 
-    <Version>12.2.1.3</Version>
+    <Version>12.2.2.1</Version>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Vintasoft.Barcode" Version="12.2.1.3" />
+    <PackageReference Include="Vintasoft.Barcode" Version="12.2.2.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ReaderSettings\BarcodeTypesReaderSettingsControl.cs">
@@ -88,7 +88,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VintasoftBarcodeLicense.cs" />
     <EmbeddedResource Include="Controls\ReaderSettings\BarcodeTypesReaderSettingsControl.resx">
       <DependentUpon>BarcodeTypesReaderSettingsControl.cs</DependentUpon>
       <SubType>Designer</SubType>
