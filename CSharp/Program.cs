@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Windows.Forms;
 
 namespace SimpleBarcodeReaderDemo
@@ -14,8 +12,6 @@ namespace SimpleBarcodeReaderDemo
         [STAThread]
         static void Main()
         {
-            VintasoftBarcode.VintasoftBarcodeLicense.Register();
-
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             Application.EnableVisualStyles();
@@ -36,21 +32,11 @@ namespace SimpleBarcodeReaderDemo
                 // show information about licensing exception
                 MessageBox.Show(string.Format("{0}: {1}", licenseException.GetType().Name, licenseException.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                string[] dirs = new string[] { ".", "..", @"..\..\", @"..\..\..\", @"..\..\..\..\..\", @"..\..\..\..\..\..\..\" };
-                // for each directory
-                for (int i = 0; i < dirs.Length; i++)
-                {
-                    string filename = Path.Combine(dirs[i], "VSBarcodeNetEvaluationLicenseManager.exe");
-                    // if VintaSoft Evaluation License Manager exists in directory
-                    if (File.Exists(filename))
-                    {
-                        // start Vintasoft Evaluation License Manager for getting the evaluation license
-                        System.Diagnostics.Process process = new System.Diagnostics.Process();
-                        process.StartInfo.FileName = filename;
-                        process.Start();
-                        return;
-                    }
-                }
+                // open article with information about usage of evaluation license
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.FileName = "https://www.vintasoft.com/docs/vsbarcode-dotnet/Licensing-Barcode-Evaluation.html";
+                process.StartInfo.UseShellExecute = true;
+                process.Start();
             }
         }
 
