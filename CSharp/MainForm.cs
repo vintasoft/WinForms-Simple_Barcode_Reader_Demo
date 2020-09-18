@@ -199,18 +199,16 @@ namespace SimpleBarcodeReaderDemo
         {
             info.ShowNonDataFlagsInValue = true;
 
-            string value;
-            if (info.BarcodeInfoClass == BarcodeInfoClass.Barcode2D)
-                value = EciCharacterDecoder.Decode(info.ValueItems);
-            else
-                value = info.Value;
+            string value = info.Value;
 
-            if ((info.BarcodeType & BarcodeType.UPCE) != 0)
-                value += string.Format(" (UPC-E: {0})", (info as UPCEANInfo).UPCEValue);
+            if (info is UPCEANInfo)
+            {
+                if ((info.BarcodeType & BarcodeType.UPCE) != 0)
+                    value += string.Format(" (UPC-E: {0})", (info as UPCEANInfo).UPCEValue);
 
-            if ((info.BarcodeType & BarcodeType.UPCA) != 0)
-                value += string.Format(" (UPC-A: {0})", (info as UPCEANInfo).UPCAValue);
-
+                if ((info.BarcodeType & BarcodeType.UPCA) != 0)
+                    value += string.Format(" (UPC-A: {0})", (info as UPCEANInfo).UPCAValue);
+            }
 
             string confidence;
             if (info.Confidence == ReaderSettings.ConfidenceNotAvailable)
@@ -258,11 +256,18 @@ namespace SimpleBarcodeReaderDemo
 
             string barcodeTypeValue;
             if (info is StructuredAppendBarcodeInfo)
+            {
                 barcodeTypeValue = string.Format("{0} (Reconstructed)", info.BarcodeType);
+            }
             else if (info is BarcodeSubsetInfo)
-                barcodeTypeValue = ((BarcodeSubsetInfo)info).BarcodeSubset.ToString();
+            {
+                BarcodeSubsetInfo subsetInfo = (BarcodeSubsetInfo)info;
+                barcodeTypeValue = string.Format("{0} ({1})", subsetInfo.BarcodeSubset.Name, subsetInfo.BarcodeSubset.BarcodeType);
+            }
             else
+            {
                 barcodeTypeValue = info.BarcodeType.ToString();
+            }
 
             StringBuilder result = new StringBuilder();
             result.AppendLine(string.Format("[{0}:{1}]", index + 1, barcodeTypeValue));

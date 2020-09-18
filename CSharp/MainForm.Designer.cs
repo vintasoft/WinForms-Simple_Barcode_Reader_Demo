@@ -35,7 +35,7 @@ namespace SimpleBarcodeReaderDemo
             this.checkBoxZoomImage = new System.Windows.Forms.CheckBox();
             this.buttonOpenImage = new System.Windows.Forms.Button();
             this.buttonReadBarcodes = new System.Windows.Forms.Button();
-            this.barcodeTypesEditor = new BarcodeDemo.BarcodeTypesReaderSettingsControl();
+            this.barcodeTypesEditor = new BarcodeDemo.ReaderSettingsBarcodeTypesControl();
             this.scanDirectionEditor = new BarcodeDemo.ScanDirectionEditorControl();
             this.scanIntervalEditor = new BarcodeDemo.ScanIntervalEditorControl();
             this.expectedBarcodesEditor = new BarcodeDemo.ExpectedBarcodesEditorControl();
@@ -120,7 +120,6 @@ namespace SimpleBarcodeReaderDemo
             // 
             this.barcodeTypesEditor.Location = new System.Drawing.Point(273, 1);
             this.barcodeTypesEditor.Name = "barcodeTypesEditor";
-            this.barcodeTypesEditor.ShowUnknownLinearSettings = false;
             this.barcodeTypesEditor.Size = new System.Drawing.Size(495, 263);
             this.barcodeTypesEditor.TabIndex = 35;
             // 
@@ -252,7 +251,7 @@ namespace SimpleBarcodeReaderDemo
         private BarcodeDemo.ExpectedBarcodesEditorControl expectedBarcodesEditor;
         private BarcodeDemo.ScanIntervalEditorControl scanIntervalEditor;
         private BarcodeDemo.ScanDirectionEditorControl scanDirectionEditor;
-        private BarcodeDemo.BarcodeTypesReaderSettingsControl barcodeTypesEditor;
+        private BarcodeDemo.ReaderSettingsBarcodeTypesControl barcodeTypesEditor;
         private System.Windows.Forms.ProgressBar recognitionProgressBar;
         private System.Windows.Forms.GroupBox controlButtonsGroupBox1;
     }
