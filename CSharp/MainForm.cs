@@ -13,15 +13,15 @@ namespace SimpleBarcodeReaderDemo
 {
     public partial class MainForm : Form
     {
-        
+
         #region Fields
 
         string _formText = "VintaSoft Simple Barcode Reader Demo v" + Vintasoft.Barcode.BarcodeGlobalSettings.ProductVersion;
 
         BarcodeReader _reader = new BarcodeReader();
-        
+
         SelectImageFrameForm _selectImageFrameForm = new SelectImageFrameForm();
-        
+
         SelectPdfPageForm _selectPdfPageForm = new SelectPdfPageForm();
 
         Stream _imageStream;
@@ -45,24 +45,9 @@ namespace SimpleBarcodeReaderDemo
 
             try
             {
-                // try change OpenDialog.InitialDirectory to  ..\..\..\Images directory
-                string workDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.FullyQualifiedName);
-                workDir = Path.GetDirectoryName(workDir);
-                workDir = Path.GetDirectoryName(workDir);
-                workDir = Path.GetDirectoryName(workDir);
-                workDir = Path.Combine(workDir, "Images");
-                if (Directory.Exists(workDir))
-                {
-                    openFileDialog.InitialDirectory = workDir;
-                }
-                else
-                {
-                    workDir = Path.GetDirectoryName(workDir);
-                    workDir = Path.GetDirectoryName(workDir);
-                    workDir = Path.Combine(workDir, "Images");
-                    if (Directory.Exists(workDir))
-                        openFileDialog.InitialDirectory = workDir;
-                }
+                string exampleImagesDir = GetExampleImagesDirectory();
+                if (exampleImagesDir != null)
+                    openFileDialog.InitialDirectory = exampleImagesDir;
             }
             catch
             {
@@ -84,7 +69,7 @@ namespace SimpleBarcodeReaderDemo
 
 
         #region Methods
-        
+
         #region Barcode Reader
 
         private void reader_Progress(object sender, BarcodeReaderProgressEventArgs e)
@@ -291,6 +276,32 @@ namespace SimpleBarcodeReaderDemo
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Returns path to "Images" directory with example barcode images.
+        /// </summary>
+        /// <returns>Path to "Images" directory with example barcode images.</returns>
+        private string GetExampleImagesDirectory()
+        {
+            string binDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.FullyQualifiedName);
+            string exampleImagesDir = Path.Combine(binDir, Path.Combine("..", Path.Combine("..", Path.Combine("..", "Images"))));
+            if (Directory.Exists(exampleImagesDir))
+                return Path.GetFullPath(exampleImagesDir);
+
+            exampleImagesDir = Path.Combine(binDir, Path.Combine("..", Path.Combine("..", Path.Combine("..", Path.Combine("..", "Images")))));
+            if (Directory.Exists(exampleImagesDir))
+                return Path.GetFullPath(exampleImagesDir);
+
+            exampleImagesDir = Path.Combine(binDir, Path.Combine("..", Path.Combine("..", Path.Combine("..", Path.Combine("..", Path.Combine("..", "Images"))))));
+            if (Directory.Exists(exampleImagesDir))
+                return Path.GetFullPath(exampleImagesDir);
+
+            exampleImagesDir = Path.Combine(binDir, Path.Combine("..", Path.Combine("..", Path.Combine("..", Path.Combine("..", Path.Combine("..", Path.Combine("..", "Images")))))));
+            if (Directory.Exists(exampleImagesDir))
+                return Path.GetFullPath(exampleImagesDir);
+
+            return null;
+        }
+
         #endregion
 
 
@@ -393,8 +404,6 @@ namespace SimpleBarcodeReaderDemo
         }
 
         #endregion
-
-     
 
         #endregion
 

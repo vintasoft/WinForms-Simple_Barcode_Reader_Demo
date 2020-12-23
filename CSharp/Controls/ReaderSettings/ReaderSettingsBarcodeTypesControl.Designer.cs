@@ -165,7 +165,6 @@ namespace BarcodeDemo
             // 
             // ReaderSettingsBarcodeTypesControl
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.scanBarcodesGroupBox);
             this.Controls.Add(this.availableBarcodesGroupBox);
             this.Name = "ReaderSettingsBarcodeTypesControl";

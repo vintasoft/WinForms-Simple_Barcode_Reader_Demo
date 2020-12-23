@@ -71,7 +71,6 @@ namespace BarcodeDemo
             // 
             // ParameterEditorControl
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.valueGroupBox);
             this.Name = "ParameterEditorControl";
             this.Size = new System.Drawing.Size(190, 81);

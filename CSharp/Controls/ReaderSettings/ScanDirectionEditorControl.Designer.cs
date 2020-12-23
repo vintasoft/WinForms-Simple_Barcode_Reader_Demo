@@ -197,7 +197,6 @@
             // 
             // ScanDirectionEditorControl
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.GroupBox2);
             this.Name = "ScanDirectionEditorControl";
             this.Size = new System.Drawing.Size(255, 100);

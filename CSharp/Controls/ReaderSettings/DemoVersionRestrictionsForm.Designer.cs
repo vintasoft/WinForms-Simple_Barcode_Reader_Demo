@@ -154,7 +154,6 @@ namespace BarcodeDemo
             // DemoVersionRestrictionsForm
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(451, 217);
             this.Controls.Add(this.androidBarcodeGeneratorLinkLabel);
             this.Controls.Add(this.aspNetBarcodeScannerGeneratorLinkLabel);

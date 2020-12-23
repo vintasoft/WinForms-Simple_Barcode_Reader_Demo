@@ -73,7 +73,6 @@ namespace SimpleBarcodeReaderDemo
             // FormFrameSelect
             // 
             this.AcceptButton = this.buttonOK;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 71);
             this.Controls.Add(this.frameNumber);
             this.Controls.Add(this.buttonOK);
@@ -81,6 +80,7 @@ namespace SimpleBarcodeReaderDemo
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "FormFrameSelect";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
