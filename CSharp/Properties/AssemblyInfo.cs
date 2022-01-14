@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("VintaSoft Ltd.")]
 [assembly: AssemblyProduct("VintaSoft Barcode .NET SDK")]
-[assembly: AssemblyCopyright("Copyright VintaSoft Ltd. 2021")]
+[assembly: AssemblyCopyright("Copyright VintaSoft Ltd. 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("12.5.0.5")]
-[assembly: AssemblyFileVersion("12.5.0.5")]
+[assembly: AssemblyVersion("12.5.0.7")]
+[assembly: AssemblyFileVersion("12.5.0.7")]
