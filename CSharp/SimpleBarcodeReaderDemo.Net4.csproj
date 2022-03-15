@@ -78,7 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Vintasoft.Barcode" Version="12.5.2.1" />
+    <PackageReference Include="Vintasoft.Barcode" Version="12.5.3.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ReaderSettings\BarcodeTypesReaderSettingsControl.cs">
