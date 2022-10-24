@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace SimpleBarcodeReaderDemo
 {
+    /// <summary>
+    /// A form that allows to select frame from the multipage image.
+    /// </summary>
     public partial class SelectImageFrameForm : Form
     {
 
@@ -18,6 +21,9 @@ namespace SimpleBarcodeReaderDemo
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SelectImageFrameForm"/> class.
+        /// </summary>
         public SelectImageFrameForm()
         {
             InitializeComponent();
@@ -30,6 +36,10 @@ namespace SimpleBarcodeReaderDemo
 
         #region Methods
 
+        /// <summary>
+        /// Shows the dialog that allows to select frame.
+        /// </summary>
+        /// <param name="image">Image.</param>
         public void SelectFrame(Image image)
         {
             FrameDimension dimension = new FrameDimension(image.FrameDimensionsList[0]);

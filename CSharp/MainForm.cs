@@ -6,11 +6,13 @@ using System.Text;
 using System.Windows.Forms;
 using Vintasoft.Barcode;
 using Vintasoft.Barcode.BarcodeInfo;
-using Vintasoft.Barcode.GS1;
-using Vintasoft.Barcode.SymbologySubsets.AAMVA;
+using Vintasoft.Barcode.SymbologySubsets;
 
 namespace SimpleBarcodeReaderDemo
 {
+    /// <summary>
+    /// The main form of Simple Barcode Reader Demo.
+    /// </summary>
     public partial class MainForm : Form
     {
 
@@ -32,7 +34,20 @@ namespace SimpleBarcodeReaderDemo
 
 
 
-        #region Constructor
+        #region Constructors
+
+        /// <summary>
+        /// Initializes the <see cref="MainForm"/> class.
+        /// </summary>
+        static MainForm()
+        {
+#if NETCOREAPP
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+#endif
+
+            // initialize Vintasoft.Barcode.Gdi assembly
+            Vintasoft.Barcode.GdiAssembly.Init();
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -56,7 +71,7 @@ namespace SimpleBarcodeReaderDemo
             _reader.Settings.SearchQRModel1Barcodes = true;
             _reader.Settings.ScanDirection = ScanDirection.Horizontal | ScanDirection.Vertical;
             _reader.Settings.ScanBarcodeTypes = BarcodeType.Code39 | BarcodeType.Code128;
-            _reader.Progress += new EventHandler<BarcodeReaderProgressEventArgs>(reader_Progress);
+            _reader.Progress += new EventHandler<BarcodeReaderProgressEventArgs>(barcodeReader_Progress);
 
             expectedBarcodesEditor.SetBarcodeReaderSettings(_reader.Settings);
             scanIntervalEditor.SetBarcodeReaderSettings(_reader.Settings);
@@ -72,7 +87,7 @@ namespace SimpleBarcodeReaderDemo
 
         #region Barcode Reader
 
-        private void reader_Progress(object sender, BarcodeReaderProgressEventArgs e)
+        private void barcodeReader_Progress(object sender, BarcodeReaderProgressEventArgs e)
         {
             recognitionProgressBar.Value = e.Progress;
         }
@@ -125,8 +140,8 @@ namespace SimpleBarcodeReaderDemo
                     for (int i = 0; i < infos.Length; i++)
                     {
                         IBarcodeInfo inf = infos[i];
-                        g.FillPolygon(new SolidBrush(Color.FromArgb(48, pen.Color)), inf.Region.GetPoints());
-                        g.DrawPolygon(pen, inf.Region.GetPoints());
+                        g.FillPolygon(new SolidBrush(Color.FromArgb(48, pen.Color)), GdiConverter.Convert(inf.Region.GetPoints()));
+                        g.DrawPolygon(pen, GdiConverter.Convert(inf.Region.GetPoints()));
 
                         SolidBrush br = new SolidBrush(Color.Lime);
                         if (inf.ReadingQuality < 0.75)
@@ -164,7 +179,7 @@ namespace SimpleBarcodeReaderDemo
 
             if (infos.Length == 0)
             {
-                sb.Append(string.Format("No barcodes found ({0} ms).", _reader.RecognizeTime.TotalMilliseconds));
+                sb.Append(string.Format("Barcodes are not found ({0} ms).", _reader.RecognizeTime.TotalMilliseconds));
             }
             else
             {
@@ -268,11 +283,15 @@ namespace SimpleBarcodeReaderDemo
         {
             StringBuilder sb = new StringBuilder();
             if (text != null)
+            {
                 for (int i = 0; i < text.Length; i++)
+                {
                     if (text[i] >= ' ' || text[i] == '\n' || text[i] == '\r' || text[i] == '\t')
                         sb.Append(text[i]);
                     else
                         sb.Append('?');
+                }
+            }
             return sb.ToString();
         }
 
@@ -394,7 +413,7 @@ namespace SimpleBarcodeReaderDemo
             }
         }
 
-        private void SimpleBarcodeReaderForm_KeyDown(object sender, KeyEventArgs e)
+        private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.O)
             {

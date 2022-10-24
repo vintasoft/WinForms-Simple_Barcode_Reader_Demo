@@ -1,11 +1,15 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Vintasoft.Barcode;
+using Vintasoft.Imaging;
 
 namespace SimpleBarcodeReaderDemo
 {
+    /// <summary>
+    /// A form that allows to select page from PDF document.
+    /// </summary>
     public partial class SelectPdfPageForm : Form
     {
 
@@ -20,6 +24,9 @@ namespace SimpleBarcodeReaderDemo
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SelectPdfPageForm"/> class.
+        /// </summary>
         public SelectPdfPageForm()
         {
             InitializeComponent();
@@ -48,7 +55,7 @@ namespace SimpleBarcodeReaderDemo
         private Image GetImageFromPage(PdfImageViewer viewer, int pageIndex)
         {
             string[] names = viewer.GetImageNames(pageIndex);
-            ArrayList images = new ArrayList();
+            List<VintasoftBitmap> images = new List<VintasoftBitmap>();
             for (int i = 0; i < names.Length; i++)
             {
                 try
@@ -63,7 +70,7 @@ namespace SimpleBarcodeReaderDemo
             if (images.Count == 0)
                 return null;
             if (images.Count == 1)
-                return (Image)images[0];
+                return GdiConverter.Convert(images[0], true);
 
             // merge images
             int padding = 5;
@@ -72,35 +79,42 @@ namespace SimpleBarcodeReaderDemo
             int n = images.Count;
             for (int i = 0; i < n; i++)
             {
-                Image current = (Image)images[i];
+                VintasoftBitmap current = images[i];
                 if (width < current.Width)
                     width = current.Width;
                 heigth += current.Height;
             }
             width += 3;
             heigth += (n + 1) * padding;
+
             Bitmap result = new Bitmap(width, heigth, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-            Graphics g = Graphics.FromImage(result);
-            g.FillRectangle(Brushes.White, new Rectangle(0, 0, width, heigth));
-            int dy = 1;
-            for (int i = 0; i < n; i++)
+            using (Graphics g = Graphics.FromImage(result))
             {
-                Image current = (Image)images[i];
-                g.DrawImageUnscaled(current, new Point(1, dy));
-                dy += current.Height + padding;
-                current.Dispose();
+                g.FillRectangle(Brushes.White, new Rectangle(0, 0, width, heigth));
+                int y = 1;
+                for (int i = 0; i < n; i++)
+                {
+                    using (Bitmap current = GdiConverter.Convert(images[i], true))
+                    {
+                        g.DrawImageUnscaled(current, new Point(1, y));
+                        y += current.Height + padding;
+                    }
+                }
             }
-            g.Dispose();
 
             return result;
         }
 
+        /// <summary>
+        /// Shows a dialog that allows to select PDF page.
+        /// </summary>
+        /// <param name="pdfFileName">The filename of PDF document.</param>
         public Image SelectImage(string pdfFileName)
         {
-            PdfImageViewer viewer;
+            PdfImageViewer pdfImageViewer;
             try
             {
-                viewer = new PdfImageViewer(pdfFileName);
+                pdfImageViewer = new PdfImageViewer(pdfFileName);
             }
             catch (Exception ex)
             {
@@ -111,22 +125,23 @@ namespace SimpleBarcodeReaderDemo
             try
             {
                 pages.Items.Clear();
-                for (int i = 0; i < viewer.PageCount; i++)
+
+                for (int i = 0; i < pdfImageViewer.PageCount; i++)
                 {
-                    int k = viewer.GetImageNames(i).Length;
+                    int k = pdfImageViewer.GetImageNames(i).Length;
                     if (k > 0)
                         pages.Items.Add(i + 1);
                 }
                 if (pages.Items.Count == 0)
                 {
-                    MessageBox.Show("Images in PDF file are not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("PDF document does not contain images.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 pages.SelectedIndex = 0;
 
                 if (pages.Items.Count == 1)
                 {
-                    return GetImageFromPage(viewer, 0);
+                    return GetImageFromPage(pdfImageViewer, 0);
                 }
 
                 label1.Text = string.Format(_labelText, pages.Items.Count);
@@ -135,15 +150,14 @@ namespace SimpleBarcodeReaderDemo
                 ShowDialog();
                 if (_selected)
                 {
-                    Image result = GetImageFromPage(viewer, (int)pages.SelectedItem - 1);
-                    return result;
+                    return GetImageFromPage(pdfImageViewer, (int)pages.SelectedItem - 1);
                 }
 
                 return null;
             }
             finally
             {
-                viewer.Dispose();
+                pdfImageViewer.Dispose();
             }
         }
 

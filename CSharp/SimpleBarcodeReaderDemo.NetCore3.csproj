@@ -18,7 +18,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>    
 
-    <Version>12.5.7.1</Version>
+    <Version>14.0.0.1</Version>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,15 +38,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Vintasoft.Barcode" Version="12.5.7.1" />
+    <PackageReference Include="Vintasoft.Barcode" Version="14.0.0.1" />
+    <PackageReference Include="Vintasoft.Barcode.Gdi" Version="14.0.0.1" />
+    <PackageReference Include="Vintasoft.Shared" Version="3.3.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ReaderSettings\BarcodeTypesReaderSettingsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ReaderSettings\BarcodeTypesReaderSettingsControl.Designer.cs">
-      <DependentUpon>BarcodeTypesReaderSettingsControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.cs" />
     <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.Designer.cs" />
     <Compile Include="Controls\ReaderSettings\ParameterEditors\ExpectedBarcodesEditorControl.cs">
@@ -92,10 +88,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\ReaderSettings\BarcodeTypesReaderSettingsControl.resx">
-      <DependentUpon>BarcodeTypesReaderSettingsControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.resx" />
     <EmbeddedResource Include="Controls\ReaderSettings\ParameterEditors\ParameterEditorControl.resx">
       <DependentUpon>ParameterEditorControl.cs</DependentUpon>

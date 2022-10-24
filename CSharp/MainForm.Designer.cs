@@ -223,7 +223,7 @@ namespace SimpleBarcodeReaderDemo
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SimpleBarcodeReaderForm_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
             this.panel1.ResumeLayout(false);
             this.controlButtonsGroupBox1.ResumeLayout(false);
             this.controlButtonsGroupBox1.PerformLayout();

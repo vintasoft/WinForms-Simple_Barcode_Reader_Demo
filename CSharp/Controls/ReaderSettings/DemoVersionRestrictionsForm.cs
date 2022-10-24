@@ -9,6 +9,10 @@ namespace BarcodeDemo
     /// </summary>
     public partial class DemoVersionRestrictionsForm : Form
     {
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DemoVersionRestrictionsForm"/> class.
+        /// </summary>
         public DemoVersionRestrictionsForm()
         {
             InitializeComponent();
@@ -26,25 +30,12 @@ namespace BarcodeDemo
             Process.Start(processInfo);
         }
 
-        private void androidBarcodeScannerLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ProcessStartInfo processInfo = new ProcessStartInfo("https://play.google.com/store/apps/details?id=com.vintasoft.barcodescanner");
-            processInfo.UseShellExecute = true;
-            Process.Start(processInfo);
-        }
-
-        private void androidBarcodeGeneratorLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ProcessStartInfo processInfo = new ProcessStartInfo("https://play.google.com/store/apps/details?id=com.vintasoft.barcodegenerator");
-            processInfo.UseShellExecute = true;
-            Process.Start(processInfo);
-        }
-
         private void aspNetBarcodeScannerGeneratorLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo processInfo = new ProcessStartInfo("https://demos.vintasoft.com/AspNetMvcBarcodeAdvancedDemo/");
+            ProcessStartInfo processInfo = new ProcessStartInfo("https://demos.vintasoft.com/AspNetCoreBarcodeAdvancedDemo/");
             processInfo.UseShellExecute = true;
             Process.Start(processInfo);
         }
+
     }
 }
