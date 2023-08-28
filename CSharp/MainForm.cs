@@ -41,6 +41,9 @@ namespace SimpleBarcodeReaderDemo
         /// </summary>
         static MainForm()
         {
+            // register the evaluation license for VintaSoft Barcode .NET SDK
+            Vintasoft.Barcode.BarcodeGlobalSettings.Register("REG_USER", "REG_EMAIL", "EXPIRATION_DATE", "REG_CODE");
+
 #if NETCOREAPP
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 #endif
