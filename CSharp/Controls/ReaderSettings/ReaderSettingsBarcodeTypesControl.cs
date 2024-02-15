@@ -55,35 +55,36 @@ namespace BarcodeDemo
         #region Constructors
 
         /// <summary>
-        /// Initializes the <see cref="ReaderSettingsBarcodeTypesControl"/> class.
-        /// </summary>
-        static ReaderSettingsBarcodeTypesControl()
-        {
-            BarcodeSymbology[] baseSymbologies = BarcodeSymbologies.GetSupportedBarcodeSymbologies();
-            BarcodeSymbologySubset[] symbologySubsets = BarcodeSymbologySubsets.GetSupportedBarcodeSymbologySubsets();
-
-            _barcodeSymbologies = new BarcodeSymbology[baseSymbologies.Length + symbologySubsets.Length];
-            baseSymbologies.CopyTo(_barcodeSymbologies, 0);
-            symbologySubsets.CopyTo(_barcodeSymbologies, baseSymbologies.Length);
-            Array.Sort(_barcodeSymbologies);
-
-            _barcodeTypeToSymbology = new Dictionary<BarcodeType, BarcodeSymbology>();
-            foreach (BarcodeSymbology symbology in baseSymbologies)
-                _barcodeTypeToSymbology.Add(symbology.BarcodeType, symbology);
-
-            _nameToSymbologySubset = new Dictionary<string, BarcodeSymbologySubset>();
-            foreach (BarcodeSymbologySubset symbologySubset in symbologySubsets)
-                _nameToSymbologySubset.Add(symbologySubset.Name, symbologySubset);
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ReaderSettingsBarcodeTypesControl"/> class.
         /// </summary>
         public ReaderSettingsBarcodeTypesControl()
         {
             InitializeComponent();
 
-            UpdateAvailableBarcodes();
+            bool designMode = System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime;
+            if (!designMode)
+            {
+                if (_barcodeSymbologies == null)
+                {
+                    BarcodeSymbology[] baseSymbologies = BarcodeSymbologies.GetSupportedBarcodeSymbologies();
+                    BarcodeSymbologySubset[] symbologySubsets = BarcodeSymbologySubsets.GetSupportedBarcodeSymbologySubsets();
+
+                    _barcodeSymbologies = new BarcodeSymbology[baseSymbologies.Length + symbologySubsets.Length];
+                    baseSymbologies.CopyTo(_barcodeSymbologies, 0);
+                    symbologySubsets.CopyTo(_barcodeSymbologies, baseSymbologies.Length);
+                    Array.Sort(_barcodeSymbologies);
+
+                    _barcodeTypeToSymbology = new Dictionary<BarcodeType, BarcodeSymbology>();
+                    foreach (BarcodeSymbology symbology in baseSymbologies)
+                        _barcodeTypeToSymbology.Add(symbology.BarcodeType, symbology);
+
+                    _nameToSymbologySubset = new Dictionary<string, BarcodeSymbologySubset>();
+                    foreach (BarcodeSymbologySubset symbologySubset in symbologySubsets)
+                        _nameToSymbologySubset.Add(symbologySubset.Name, symbologySubset);
+                }
+
+                UpdateAvailableBarcodes();
+            }
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
@@ -18,8 +18,9 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>    
 
-    <Version>14.2.2.1</Version>
+    <Version>14.3.0.1</Version>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -37,14 +38,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Vintasoft.Barcode" Version="14.2.2.1" />
-    <PackageReference Include="Vintasoft.Barcode.Gdi" Version="14.2.2.1" />
+    <PackageReference Include="Vintasoft.Barcode" Version="14.3.0.1" />
+    <PackageReference Include="Vintasoft.Barcode.Gdi" Version="14.3.0.1" />
     <PackageReference Include="Vintasoft.Shared" Version="4.1.2.1" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.cs" />
-    <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.Designer.cs" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.Designer.cs">
+      <DependentUpon>DemoVersionRestrictionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ReaderSettings\ParameterEditors\ExpectedBarcodesEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -57,8 +68,12 @@
     <Compile Include="Controls\ReaderSettings\ParameterEditors\ScanIntervalEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.cs" />
-    <Compile Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.Designer.cs" />
+    <Compile Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.Designer.cs">
+      <DependentUpon>ReaderSettingsBarcodeTypesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ReaderSettings\ReaderSettingsEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,12 +103,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.resx" />
+    <EmbeddedResource Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.resx">
+      <DependentUpon>DemoVersionRestrictionsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ReaderSettings\ParameterEditors\ParameterEditorControl.resx">
       <DependentUpon>ParameterEditorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.resx" />
+    <EmbeddedResource Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.resx">
+      <DependentUpon>ReaderSettingsBarcodeTypesControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ReaderSettings\ScanDirectionEditorControl.resx">
       <DependentUpon>ScanDirectionEditorControl.cs</DependentUpon>
       <SubType>Designer</SubType>

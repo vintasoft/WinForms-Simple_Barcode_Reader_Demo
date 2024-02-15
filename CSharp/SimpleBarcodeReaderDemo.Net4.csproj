@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimpleBarcodeReaderDemo</RootNamespace>
     <AssemblyName>SimpleBarcodeReaderDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>App.ico</ApplicationIcon>
   </PropertyGroup>
@@ -20,6 +20,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
@@ -29,6 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -39,6 +41,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -49,6 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -59,6 +63,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -69,6 +74,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -78,12 +84,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Vintasoft.Barcode" Version="14.2.2.1" />
-    <PackageReference Include="Vintasoft.Barcode.Gdi" Version="14.2.2.1" />
+    <PackageReference Include="Vintasoft.Barcode" Version="14.3.0.1" />
+    <PackageReference Include="Vintasoft.Barcode.Gdi" Version="14.3.0.1" />
     <PackageReference Include="Vintasoft.Shared" Version="4.1.2.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.cs" />
+    <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controls\ReaderSettings\DemoVersionRestrictionsForm.Designer.cs">
       <DependentUpon>DemoVersionRestrictionsForm.cs</DependentUpon>
     </Compile>
@@ -99,7 +107,9 @@
     <Compile Include="Controls\ReaderSettings\ParameterEditors\ScanIntervalEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.cs" />
+    <Compile Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\ReaderSettings\ReaderSettingsBarcodeTypesControl.Designer.cs">
       <DependentUpon>ReaderSettingsBarcodeTypesControl.cs</DependentUpon>
     </Compile>
