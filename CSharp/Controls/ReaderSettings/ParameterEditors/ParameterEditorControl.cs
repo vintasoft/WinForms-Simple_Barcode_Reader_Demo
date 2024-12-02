@@ -42,6 +42,7 @@ namespace BarcodeDemo
         /// <summary>
         /// Gets or sets a title.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Title
         {
             get
@@ -57,6 +58,7 @@ namespace BarcodeDemo
         /// <summary>
         /// Gets or sets a minimum value.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Minimum
         {
             get
@@ -72,6 +74,7 @@ namespace BarcodeDemo
         /// <summary>
         /// Gets or sets a maximum value.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Maximum
         {
             get
@@ -87,6 +90,7 @@ namespace BarcodeDemo
         /// <summary>
         /// Gets or sets a property value.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public virtual int Value
         {
             get
@@ -102,6 +106,7 @@ namespace BarcodeDemo
         /// <summary>
         /// Gets or sets a value of TrackBar.TickFrequency property.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int TickFrequency
         {
             get

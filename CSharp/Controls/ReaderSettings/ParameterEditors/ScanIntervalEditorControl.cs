@@ -1,4 +1,6 @@
-﻿namespace BarcodeDemo
+﻿using System.ComponentModel;
+
+namespace BarcodeDemo
 {
     /// <summary>
     /// A control that allows to change the ReaderSettings.ScanInterval parameter.
@@ -28,6 +30,7 @@
         /// <summary>
         /// Gets or sets a property value.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override int Value
         {
             get
