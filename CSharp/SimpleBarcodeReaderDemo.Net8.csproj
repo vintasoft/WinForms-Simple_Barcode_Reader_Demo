@@ -18,7 +18,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>    
 
-    <Version>15.3.12.1</Version>
+    <Version>16.0.0.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,13 +40,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Vintasoft.Barcode" Version="15.3.12.1" />
-    <PackageReference Include="Vintasoft.Barcode.Gdi" Version="15.3.12.1" />
-    <PackageReference Include="Vintasoft.Shared" Version="4.6.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+    <PackageReference Include="Vintasoft.Barcode" Version="16.0.0.1" />
+    <PackageReference Include="Vintasoft.Barcode.Gdi" Version="16.0.0.1" />
+    <PackageReference Include="Vintasoft.Shared" Version="4.6.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -131,4 +128,5 @@
     </EmbeddedResource>
     <Content Include="App.ico" />
   </ItemGroup>
+
 </Project>

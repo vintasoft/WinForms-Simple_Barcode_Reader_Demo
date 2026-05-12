@@ -145,8 +145,8 @@ namespace SimpleBarcodeReaderDemo
             // expectedBarcodesEditor
             // 
             this.expectedBarcodesEditor.Location = new System.Drawing.Point(139, 87);
-            this.expectedBarcodesEditor.Maximum = 50;
-            this.expectedBarcodesEditor.Minimum = 1;
+            this.expectedBarcodesEditor.Maximum = 100;
+            this.expectedBarcodesEditor.Minimum = 0;
             this.expectedBarcodesEditor.Name = "expectedBarcodesEditor";
             this.expectedBarcodesEditor.Size = new System.Drawing.Size(127, 75);
             this.expectedBarcodesEditor.TabIndex = 32;
@@ -217,9 +217,9 @@ namespace SimpleBarcodeReaderDemo
             this.ClientSize = new System.Drawing.Size(775, 662);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
